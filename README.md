@@ -35,7 +35,7 @@ Things you may want to cover:
 | first_name            | string  | null: false              |
 | last_name_kana        | string  | null: false              |
 | first_name_kana       | string  | null: false              |
-| birth_date            | integer | null: false              |
+| birth_date            | date    | null: false              |
 
 ### Association
 
@@ -90,21 +90,19 @@ Things you may want to cover:
 
 | Column          | Type       | Options                        |
 | -------         | ---------- | ------------------------------ |
-| postal_code     | integer    | null: false                    |
+| postal_code     | string     | null: false                    |
 | prefecture_id   | integer    | null: false                    |
 | city            | string     | null: false                    |
 | addresses       | string     | null: false                    |
 | building        | string     |                                |
-| phone_number    | integer    | null: false                    |
-| content         | string     | null: false                    |
-| prototype       | string     | null: false                    |
+| phone_number    | string     | null: false                    |
 | order           | references | null: false, foreign_key: true |
 
 
 
 ### Association
 
-- belongs_to :orders
+- belongs_to :order
 
 
 
