@@ -26,16 +26,16 @@ Things you may want to cover:
 
 ## users テーブル
    
-| Column                | Type    | Options                |
-| ------------------    | -----   |  --------------------- |
-| email                 | string  | null: false            |
-| password-confirmation | string  | null: false            |
-| nickname              | string  | null: false            |
-| last-name             | string  | null: false            |
-| first-name            | string  | null: false            |
-| last-name-kana        | string  | null: false            |
-| first-name-kana       | string  | null: false            |
-| birth-date            | integer | null: false            |
+| Column                | Type    | Options                  |
+| ------------------    | -----   |  -------------------- -  |
+| email                 | string  | null: false,unique: true |
+| password-confirmation | string  | null: false              |
+| nickname              | string  | null: false              |
+| last-name             | string  | null: false              |
+| first-name            | string  | null: false              |
+| last-name-kana        | string  | null: false              |
+| first-name-kana       | string  | null: false              |
+| birth-date            | integer | null: false              |
 
 ### Association
 
