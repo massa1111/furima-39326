@@ -20,25 +20,53 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
       it "last_nameが空では登録できない" do
-
+       @user.last_name = ''
+       @user.valid?
+       expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
       it "first_nameが空では登録できない" do
-
+        @user.first_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name can't be blank")
       end
       it "last_name_kanaが空では登録できない" do
-
+        @user.last_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
       it "first_name_kanaが空では登録できない" do
-
+        @user.first_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
-      it "last_name_kanaが空では登録できない" do
-
+      
+      it "last_nameが全角（漢字・ひらがな・カタカナ）以外では登録できない" do
+        @user.last_name = "Smith" # 全角以外の文字列を代入
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name is invalid")
       end
-      it "first_name_kanaが空では登録できない" do
-
+      it "first_nameが全角（漢字・ひらがな・カタカナ）以外では登録できない" do
+        @user.first_name = "Smith" # 全角以外の文字列を代入
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
       end
+      it "last_name_kanaがカタカナ以外の文字を含む場合、登録できない" do
+        @user.last_name_kana = "やまだ"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      end
+      
+      it "first_name_kanaがカタカナ以外の文字を含む場合、登録できない" do
+        @user.first_name_kana = "りくた"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
+      
+      
       it "birth_dateが空では登録できない" do
-
+        @user.birth_date = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Birth date can't be blank")
       end
       it "emailが空では登録できない" do
         @user.email = ''
