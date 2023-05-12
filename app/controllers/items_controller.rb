@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @item = Prototype.all
+   
   end
 
 
