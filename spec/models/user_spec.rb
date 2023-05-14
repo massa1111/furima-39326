@@ -44,7 +44,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Last name is invalid')
       end
       it 'first_nameが全角（漢字・ひらがな・カタカナ）以外では登録できない' do
-        @user.first_name = 'Smith' 
+        @user.first_name = 'Smith'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name is invalid')
       end
