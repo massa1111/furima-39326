@@ -23,9 +23,9 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Info can't be blank")
       end
-     
+
       it 'カテゴリーに「---」が選択されている場合は出品できない' do
-        @item.category_id ='1'
+        @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
@@ -54,13 +54,13 @@ RSpec.describe Item, type: :model do
       end
 
       it 'priceが空では登録できない' do
-        @item.price =''
+        @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it 'imageが空では登録できない' do
-        @item.image = nil 
+        @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end

@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   has_one :shipping_fee_status
   has_one :prefecture
   has_one :scheduled_delivery
- 
+
   has_one_attached :image
   validates :image, presence: true
   validates :name, presence: true
