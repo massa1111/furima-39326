@@ -39,12 +39,12 @@ RSpec.describe User, type: :model do
       end
 
       it 'last_nameが全角（漢字・ひらがな・カタカナ）以外では登録できない' do
-        @user.last_name = 'Smith' # 全角以外の文字列を代入
+        @user.last_name = 'Smith'
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name is invalid')
       end
       it 'first_nameが全角（漢字・ひらがな・カタカナ）以外では登録できない' do
-        @user.first_name = 'Smith' # 全角以外の文字列を代入
+        @user.first_name = 'Smith'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name is invalid')
       end
