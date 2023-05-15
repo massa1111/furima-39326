@@ -23,44 +23,44 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Info can't be blank")
       end
-
-      it 'category_idが空では登録できない' do
-        @item.category_id = nil
+     
+      it 'カテゴリーに「---」が選択されている場合は出品できない' do
+        @item.category_id ='1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category is not a number')
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
 
-      it 'sales_status_idが空では登録できない' do
-        @item.sales_status_id = nil
+      it '商品の状態に「---」が選択されている場合は出品できない' do
+        @item.sales_status_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Sales status is not a number')
+        expect(@item.errors.full_messages).to include('Sales status must be other than 1')
       end
-      it 'shipping_fee_status_idが空では登録できない' do
-        @item.shipping_fee_status_id = nil
+      it '配送料の負担に「---」が選択されている場合は出品できない' do
+        @item.shipping_fee_status_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Shipping fee status is not a number')
-      end
-
-      it 'prefecture_idが空では登録できない' do
-        @item.prefecture_id = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include('Prefecture is not a number')
+        expect(@item.errors.full_messages).to include('Shipping fee status must be other than 1')
       end
 
-      it 'scheduled_delivery_idが空では登録できない' do
-        @item.scheduled_delivery_id = nil
+      it '発送元の地域に「---」が選択されている場合は出品できない' do
+        @item.prefecture_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Scheduled delivery is not a number')
+        expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
+      end
+
+      it '発送までの日数に「---」が選択されている場合は出品できない' do
+        @item.scheduled_delivery_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Scheduled delivery must be other than 1')
       end
 
       it 'priceが空では登録できない' do
-        @item.price = nil
+        @item.price =''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
 
       it 'imageが空では登録できない' do
-        @item.image = nil
+        @item.image = nil 
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
@@ -77,7 +77,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
 
-      it 'priceが¥10,000,000以下では登録できない' do
+      it 'priceが¥10,000,000以上では登録できない' do
         @item.price = 100_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not included in the list')
