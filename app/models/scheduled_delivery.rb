@@ -6,4 +6,7 @@ class ScheduledDelivery < ActiveHash::Base
     { id: 4, scheduled_delivery: '4~7日で発送' }
 
   ]
+  include ActiveHash::Associations
+  belongs_to :item
 end
+
