@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   
 
   def create
-    # 注文を作成するためのアクション
+    @item = Item.find(params[:item_id])
     @order_shipment = OrderShipment.new(order_params)
     if @order_shipment.valid?
        @order_shipment.save
@@ -24,6 +24,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_shipment).permit(:postal_code, :city, :addresses, :building, :phone_number, :order).merge(user_id: current_user.id)
+    params.require(:order_shipment).permit(:item_id,:postal_code, :city, :addresses, :prefecture_id, :building, :phone_number, :order).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 end
