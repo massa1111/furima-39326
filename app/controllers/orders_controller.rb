@@ -26,26 +26,20 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  # def check_item_availability   
-  #   if user_signed_in? && order_exists? && current_user != @item.user
-  #     redirect_to root_path
-  #   elsif order_exists?
-  #     redirect_to root_path
-  #   end
-  # end
+  def check_item_availability   
+    if user_signed_in? && order_exists? && current_user != @item.user
+      redirect_to root_path
+    elsif order_exists?
+      redirect_to root_path
+    end
+  end
 
 
   def order_exists?
     Order.exists?(item_id: @item.id)
   end
  
-  def check_item_availability
-    if user_signed_in?
-      redirect_to root_path
-    elsif order_exists?
-      redirect_to root_path
-    end
-  end
+
 
   def order_params
     params.require(:order_shipment).permit(:item_id,:postal_code, :city, :addresses, :prefecture_id, :building, :phone_number, :order).merge(user_id: current_user.id, item_id: params[:item_id])
