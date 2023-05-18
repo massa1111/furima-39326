@@ -6,6 +6,5 @@ FactoryBot.define do
     addresses { '1-1' }
     phone_number { '09012345678' }
     building { '新ビル' }
-    order { 1 } 
   end
 end

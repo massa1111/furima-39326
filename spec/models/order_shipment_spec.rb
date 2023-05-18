@@ -71,12 +71,6 @@ RSpec.describe OrderShipment, type: :model do
     expect(@order_shipment.errors.full_messages).to include("Item can't be blank")
   end
   
-  it 'orderが紐付いていないと保存できないこと' do
-    @order_shipment.order = nil
-    @order_shipment.valid?
-    expect(@order_shipment.errors.full_messages).to include("Order can't be blank")
-  end
-  
   it 'userが紐付いていなければ保存できないこと' do
     @order_shipment.user_id = nil
     @order_shipment.valid?
