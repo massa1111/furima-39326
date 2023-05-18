@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :set_item, only: [:index, :create]
   before_action :check_item_availability, only: [:index, :create]
+  # before_action :redirect_if_own_item, only: [:index, :create]
 
   def index
     @order_shipment = OrderShipment.new
@@ -24,17 +25,26 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+ 
+
+  def order_exists?
+    Order.exists?(item_id: @item.id)
+  end
+ 
+  
   def check_item_availability
-    if user_signed_in? && order_exists? && current_user != @item.user
+    if user_signed_in? && (order_exists? || current_user == @item.user)
       redirect_to root_path
-    elsif order_exists?
-      redirect_to root_path
+    elsif !user_signed_in?
+      redirect_to new_user_session_path
     end
   end
 
   def order_exists?
     Order.exists?(item_id: @item.id)
   end
+
+  
 
   def order_params
     params.require(:order_shipment).permit(:item_id, :postal_code, :city, :addresses, :prefecture_id, :building, :phone_number, :order).merge(
