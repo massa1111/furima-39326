@@ -10,6 +10,7 @@ class OrderShipment
   with_options presence: true do
    validates :item_id
    validates :user_id
+   validates :order
    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/ }
    validates :city
    validates :addresses
