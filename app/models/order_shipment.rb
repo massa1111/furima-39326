@@ -8,6 +8,7 @@ class OrderShipment
  
  
   with_options presence: true do
+   validates :token
    validates :item_id
    validates :user_id
    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/ }
