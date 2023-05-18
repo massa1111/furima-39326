@@ -1,5 +1,5 @@
 const pay = () => {
-  const payjp = Payjp('pk_test_b4bfaee8aa0a5fbcc1fe07e6')// PAY.JPテスト公開鍵
+  const payjp = Payjp(process.env.PAYJP_PUBLIC_KEY);// PAY.JPテスト公開鍵
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
