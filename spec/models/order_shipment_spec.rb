@@ -70,9 +70,6 @@ RSpec.describe OrderShipment, type: :model do
         @order_shipment.valid?
         expect(@order_shipment.errors.full_messages).to include('Phone number is invalid')
       end
-      
-      
-      
 
       it 'itemが紐付いていないと保存できないこと' do
         @order_shipment.item_id = nil

@@ -52,14 +52,11 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
- 
   def order_exists?
     Order.exists?(item_id: @item.id)
   end
+
   def contributor_confirmation
     redirect_to root_path if current_user != @item.user || order_exists?
   end
-
-
-
 end

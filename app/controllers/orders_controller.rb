@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
   before_action :check_item_availability, only: [:index, :create]
-  
+
   def index
     @order_shipment = OrderShipment.new
   end
@@ -24,19 +24,15 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
- 
-
   def order_exists?
     Order.exists?(item_id: @item.id)
   end
- 
-  
-  def check_item_availability
-    if order_exists? || current_user == @item.user
-      redirect_to root_path
-    end
-  end
 
+  def check_item_availability
+    return unless order_exists? || current_user == @item.user
+
+    redirect_to root_path
+  end
 
   def order_params
     params.require(:order_shipment).permit(:postal_code, :city, :addresses, :prefecture_id, :building, :phone_number).merge(
