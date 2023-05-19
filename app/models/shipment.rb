@@ -1,5 +1,5 @@
 class Shipment < ApplicationRecord
   belongs_to :order
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_one :prefecture
+  belongs_to :prefecture
 end
